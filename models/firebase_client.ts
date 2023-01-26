@@ -2,12 +2,12 @@ import { getApps, initializeApp } from 'firebase/app';
 import { Auth, getAuth } from 'firebase/auth';
 import getConfig from 'next/config';
 
-const { pulicRuntimeConfig } = getConfig();
+const { publicRuntimeConfig } = getConfig();
 
 const FirebaseCredentials = {
-  apiKey: pulicRuntimeConfig.apiKey,
-  authDomain: pulicRuntimeConfig.authDomain,
-  projectId: pulicRuntimeConfig.projectId,
+  apiKey: publicRuntimeConfig.apiKey,
+  authDomain: publicRuntimeConfig.authDomain,
+  projectId: publicRuntimeConfig.projectId,
 };
 
 export default class FirebaseClient {
@@ -20,6 +20,7 @@ export default class FirebaseClient {
 
     if (apps.length === 0) {
       console.info('firebase client init start');
+      console.info(FirebaseCredentials);
       initializeApp(FirebaseCredentials);
     }
     this.auth = getAuth();
